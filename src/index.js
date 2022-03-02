@@ -17,11 +17,11 @@ import './index.css';
 
 function Square(props){
     return(
-        <botton className="square"
+        <button className="square"
          onClick= {props.onClick1}
          >
             {props.value}
-        </botton>
+        </button>
     )
 }
 class Board extends React.Component {
@@ -29,13 +29,15 @@ class Board extends React.Component {
         super(props);
         this.state = {
             squares: Array(9).fill(null),
+            xIsNext: true,
         };
     }
     handleClick(i) {
 
         const squares = this.state.squares.slice();
-        squares[i]= 'X';
+        squares[i]= this.state.xIsNext? 'X':'O';
         this.setState({squares:squares})
+        this.setState({xIsNext: !this.state.xIsNext})
 
     }
     renderSquare(i) {
