@@ -15,11 +15,11 @@ import './index.css';
 //     }
 // }
 
-function Square(props){
-    return(
+function Square(props) {
+    return (
         <button className="square"
-         onClick= {props.onClick1}
-         >
+            onClick={props.onClick1}
+        >
             {props.value}
         </button>
     )
@@ -35,9 +35,11 @@ class Board extends React.Component {
     handleClick(i) {
 
         const squares = this.state.squares.slice();
-        squares[i]= this.state.xIsNext? 'X':'O';
-        this.setState({squares:squares})
-        this.setState({xIsNext: !this.state.xIsNext})
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext
+        })
 
     }
     renderSquare(i) {
@@ -47,7 +49,8 @@ class Board extends React.Component {
     }
 
     render() {
-        const status = 'Next player: X';
+        const nextPlayer = this.state.xIsNext ? 'X' : 'O'
+        const status = 'Next player: ' + nextPlayer;
 
         return (
             <div>
